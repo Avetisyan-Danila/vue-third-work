@@ -9,6 +9,11 @@ const router = createRouter({
       name: "home",
       component: () => import("../components/DemoMenu.vue"),
     },
+    {
+      path: "/counter-0",
+      name: "counter-base",
+      component: () => import("../demo0/DemoCounter.vue"),
+    },
     ...routes,
   ],
 });
