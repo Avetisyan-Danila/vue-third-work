@@ -10,9 +10,14 @@ const router = createRouter({
       component: () => import("../components/DemoMenu.vue"),
     },
     {
-      path: "/counter-0",
+      path: "/demo-0",
       name: "counter-base",
       component: () => import("../demo0/DemoCounter.vue"),
+    },
+    {
+      path: "/demo-1",
+      name: "counter-base",
+      component: () => import("../demo1/DemoCounter.vue"),
     },
     ...routes,
   ],
