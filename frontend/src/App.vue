@@ -2,6 +2,7 @@
   <app-layout
       :tasks="filteredTasks"
       :filters="state.filters"
+      @update-tasks="updateTasks"
   >
     <home-view
         :tasks="filteredTasks"
@@ -18,7 +19,6 @@ import { AppLayout } from '@/layouts'
 import { HomeView } from '@/views'
 import { normalizeTask } from './common/helpers'
 import tasks from './mocks/tasks.json'
-
 const state = reactive({
   tasks: tasks.map(task => normalizeTask(task)),
   filters: {
@@ -27,7 +27,6 @@ const state = reactive({
     statuses: []
   }
 })
-
 const filteredTasks = computed(() => {
   const filtersAreEmpty = Object.values(state.filters)
       .every(value => !value.length)
@@ -35,19 +34,16 @@ const filteredTasks = computed(() => {
     // Вернуть все задачи если фильтры не применены
     return state.tasks
   }
-
   // Применить фильтр по поиску
   const searchFilter = task => task.title
       .toLowerCase()
       .includes(state.filters.search.toLowerCase().trim())
-
   // Применить фильтр по пользователям
   const usersFilter = task => state.filters.users
       .some(userId => userId === task.userId)
-
   // Применить фильтр по статусам
-  const statusesFilter = task => state.filters.statuses.some(el => el === task.status || el === task.timeStatus)
-
+  const statusesFilter = task => state.filters.statuses
+      .some(el => el === task.status || el === task.timeStatus)
   // Обработать задачи в соответствии с фильтрами
   return state.tasks.filter(task => {
     let result = {
@@ -55,13 +51,11 @@ const filteredTasks = computed(() => {
       users: usersFilter,
       statuses: statusesFilter
     }
-
     return Object.entries(result)
         .every(([key, callback]) =>
             !state.filters[key].length || callback(task))
   })
 })
-
 // Обновить сортировку задач
 function updateTasks (tasksToUpdate) {
   tasksToUpdate.forEach(task => {
@@ -74,7 +68,6 @@ function updateTasks (tasksToUpdate) {
     }
   })
 }
-
 function applyFilters ({ item, entity }) {
   if (!Array.isArray(state.filters[entity])) {
     state.filters[entity] = item
