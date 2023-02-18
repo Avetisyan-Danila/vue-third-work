@@ -1,5 +1,8 @@
 <template>
-  <app-layout>
+  <app-layout
+      :tasks="filteredTasks"
+      :filters="state.filters"
+  >
     <home-view
         :tasks="filteredTasks"
         :filters="state.filters"
