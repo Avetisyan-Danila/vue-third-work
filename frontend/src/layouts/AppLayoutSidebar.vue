@@ -62,7 +62,7 @@ const props = defineProps({
   }
 })
 
-const state = reactive({ backlogIsHidden: false })
+const state = reactive({ backlogIsHidden: true })
 
 // Фильтруем задачи, которые относятся к бэклогу (columnId === null)
 const sidebarTasks = computed(() => {
