@@ -13,7 +13,7 @@
 
 <script setup>
 import DemoMenuCard from './DemoMenuCard.vue'
-import routes from '../routes'
+import routes from '../router/routes'
 </script>
 
 <style lang="scss" scoped>
