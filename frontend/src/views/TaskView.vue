@@ -141,6 +141,9 @@ import { getReadableDate, getImage } from '../common/helpers'
 import TaskCardTags from '../modules/tasks/components/TaskCardTags.vue'
 import TaskCardViewTicksList from '../modules/tasks/components/TaskCardViewTicksList.vue'
 import TaskCardViewComments from '../modules/tasks/components/TaskCardViewComments.vue'
+import { useTasksStore } from '@/stores'
+
+const tasksStore = useTasksStore()
 
 const dialog = ref(null)
 
@@ -156,16 +159,8 @@ const closeDialog = function () {
   router.push('/')
 }
 
-// Передадим все задачи в компонент
-const props = defineProps({
-  tasks: {
-    type: Array,
-    required: true
-  }
-})
-
 const task = computed(() => {
-  return props.tasks.find(task => task.id == route.params.id)
+  return tasksStore.tasks.find(task => +task.id === +route.params.id)
 })
 
 const dueDate = computed(() => {

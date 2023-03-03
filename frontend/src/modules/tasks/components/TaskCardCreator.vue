@@ -187,6 +187,9 @@ import { createUUIDv4, createNewDate } from '@/common/helpers'
 import AppButton from '@/common/components/AppButton.vue'
 import { validateFields } from '@/common/validator'
 import TaskCardCreatorTags from './TaskCardCreatorTags.vue'
+import { useTasksStore } from '@/stores/tasks'
+
+const tasksStore = useTasksStore()
 
 const router = useRouter()
 
@@ -196,8 +199,6 @@ const props = defineProps({
     default: null
   }
 })
-
-const emits = defineEmits(['addTask', 'editTask', 'deleteTask'])
 
 const dialog = ref(null)
 
@@ -234,7 +235,7 @@ const taskToWork = props.taskToEdit ?
 const task = ref(taskToWork)
 
 function deleteTask () {
-  emits('deleteTask', task.value.id)
+  tasksStore.deleteTask(task.value.id)
   router.push('/')
 }
 
@@ -322,10 +323,10 @@ function submit () {
   }
   if (props.taskToEdit) {
     // Редактируемая задача
-    emits('editTask', task.value)
+    tasksStore.editTask(task.value)
   } else {
     // Новая задача
-    emits('addTask', task.value)
+    tasksStore.addTask(task.value)
   }
   // Переход на главную страницу
   router.push('/')
