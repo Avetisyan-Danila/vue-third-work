@@ -13,5 +13,10 @@ export default [
         path: "/demo-4",
         name: "demo-4",
         component: () => import("../demo4/DemoCounter.vue"),
-    }
+    },
+    {
+        path: "/demo-5",
+        name: "demo-5",
+        component: () => import("../demo5/Server.vue"),
+    },
 ]
