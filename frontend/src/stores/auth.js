@@ -8,10 +8,10 @@ export const useAuthStore = defineStore('auth', {
     }),
     getters: {
         isAuthenticated: state => !!state.user,
-        getUserAttribute: state => attr => state.user ? state.user[attr] : '',
+        getUserAttribute: state => attr => state.user ? state.user[attr] : ''
     },
     actions: {
-        async login (email, password) {
+        async login(email, password) {
             try {
                 const data = await authService.login(email, password)
                 setToken(data.token)
@@ -20,10 +20,10 @@ export const useAuthStore = defineStore('auth', {
                 return e.message
             }
         },
-        async getMe () {
+        async getMe() {
             this.user = await authService.whoAmI()
         },
-        async logout (sendRequest = true) {
+        async logout(sendRequest = true) {
             await authService.logout()
             this.user = null
             removeToken()

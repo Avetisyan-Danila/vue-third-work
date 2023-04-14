@@ -17,11 +17,11 @@ const ticksStore = useTicksStore()
 
 // Загрузка первоначальных данных
 // Загружаем задачи
-tasksStore.fetchTasks()
+void tasksStore.fetchTasks()
 // Загружаем пользователей
-usersStore.fetchUsers()
+void usersStore.fetchUsers()
 // Загружаем колонки
-columnsStore.fetchColumns()
+void columnsStore.fetchColumns()
 // Загружаем комментарии
 void commentsStore.fetchComments()
 // Загружаем подзадачи

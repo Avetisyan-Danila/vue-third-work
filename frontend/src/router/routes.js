@@ -2,6 +2,14 @@ import { isAdmin } from '@/middlewares'
 
 export default [
     {
+        path: '/login',
+        name: 'Login',
+        component: () => import('../views/AppLogin.vue'),
+        meta: {
+            layout: 'AppLayoutDefault',
+        }
+    },
+    {
         path: '/',
         name: 'HomeView',
         component: () => import('../views/HomeView.vue'),
@@ -11,7 +19,7 @@ export default [
                 path: '/:id',
                 name: 'TaskView',
                 component: () => import('../views/TaskView.vue'),
-                meta: { layout: 'AppLayoutMain' },
+                meta: { layout: 'AppLayoutMain' }
             },
             {
                 path: '/tasks/create',
@@ -20,7 +28,7 @@ export default [
                 meta: {
                     layout: 'AppLayoutMain',
                     middlewares: [isAdmin],
-                },
+                }
             },
             {
                 path: '/tasks/edit/:id',
@@ -29,8 +37,8 @@ export default [
                 meta: {
                     layout: 'AppLayoutMain',
                     middlewares: [isAdmin],
-                },
+                }
             }
         ]
-    },
+    }
 ]
