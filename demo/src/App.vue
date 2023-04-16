@@ -1,5 +1,11 @@
 <template>
-  <router-view />
+  <transition
+      name="view"
+      appear
+      enter-active-class="animate__animated animate__fadeIn"
+  >
+    <router-view/>
+  </transition>
 </template>
 
 <style>
